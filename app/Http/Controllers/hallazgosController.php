@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use DB;
+use Auth;
 
 class hallazgosController extends AppBaseController
 {
@@ -44,9 +45,17 @@ class hallazgosController extends AppBaseController
      */
     public function create(){
         $object = new Temporal_informe();
-
+        $valido = 1;
         $hallazgos = $object->informe_temporal();
-        return view('hallazgos.create',compact('hallazgos'));
+
+        foreach ($hallazgos as $hall) {
+            if($hall->valida==0){
+                $valido=0;
+            }
+        }
+
+       # dd($valido);
+        return view('hallazgos.create',compact('hallazgos','valido'));
     }
 
     /**
@@ -163,22 +172,62 @@ class hallazgosController extends AppBaseController
         $hallazgo = new Temporal_informe();
 
         Temporal_informe::truncate();
-
+        $i = 0;
+        $res = '';
         $csvFile = fopen($_FILES['archivo']['tmp_name'], 'r');
             fgetcsv($csvFile);
             while(($line = fgetcsv($csvFile)) !== FALSE){  
-                $hallazgo->hallazgo = utf8_encode($line[0]);
-                $hallazgo->tipo = utf8_encode($line[1]);
-                $hallazgo->recomendacion = utf8_encode($line[2]);
-                $hallazgo->riesgo = utf8_encode($line[3]);
-                $hallazgo->responsable = utf8_encode($line[4]);
-                $hallazgo->causa_raiz = utf8_encode($line[5]);
-                $hallazgo->accion = utf8_encode($line[6]);
-                $hallazgo->compromiso = utf8_encode($line[7]);
-                $hallazgo->calificacion = utf8_encode($line[8]);
-                $hallazgo->calif_numerico = utf8_encode($line[9]);
-                $hallazgo->save();
+                Temporal_informe::insert(['hallazgo'=>utf8_encode($line[0]),
+                                          'tipo'=>utf8_encode($line[1]),
+                                          'recomendacion'=>utf8_encode($line[2]),
+                                          'riesgo'=>utf8_encode($line[3]),
+                                          'responsable'=>utf8_encode($line[4]),
+                                          'causa_raiz'=>utf8_encode($line[5]),
+                                          'accion'=>utf8_encode($line[6]),
+                                          'compromiso'=>utf8_encode($line[7]),
+                                          'calificacion'=>utf8_encode($line[8]),
+                                          'calif_numerico'=>utf8_encode($line[9]),
+                                          'anio'=>utf8_encode($line[10]),
+                                          'trimestre'=>utf8_encode($line[11]),
+                                          'archivo'=>$request->narchivo,
+                                          'localidad'=>$request->localidad,
+                                          'empresa'=>$request->empresa,
+                                          'auditor'=>$request->auditor,
+                                          'gerente'=>$request->gerente
+                                      ]);
+
+                #$hallazgo->hallazgo = utf8_encode($line[0]);
+                #$hallazgo->tipo = utf8_encode($line[1]);
+                #$hallazgo->recomendacion = utf8_encode($line[2]);
+                #$hallazgo->riesgo = utf8_encode($line[3]);
+                #$hallazgo->responsable = utf8_encode($line[4]);
+                #$hallazgo->causa_raiz = utf8_encode($line[5]);
+                #$hallazgo->accion = utf8_encode($line[6]);
+                #$hallazgo->compromiso = utf8_encode($line[7]);
+                #$hallazgo->calificacion = utf8_encode($line[8]);
+                #$hallazgo->calif_numerico = utf8_encode($line[9]);
+                #$hallazgo->anio = utf8_encode($line[10]);             
+                #$hallazgo->trimestre = utf8_encode($line[11]);
+                #$hallazgo->archivo = $request->narchivo;
+                #$hallazgo->localidad = $request->localidad;
+                #$hallazgo->empresa = $request->empresa;
+                #$hallazgo->auditor = $request->auditor;
+                #$hallazgo->gerente = $request->gerente;
+                #$hallazgo->save();
+        
             }
         return redirect()->back();
+    }
+
+    function guarda_informe(){
+
+       $var =  db::select('insert into audita_hallazgo(anio, trimestre, auditor, responsable,gerencia, tipo, archivo, calificacion, calificacion_num, hallazgo, recomendacion,riesgo, accion, fecha_com, causa_raiz, proceso, empresa, user_id)
+                    select anio, trimestre, auditor, u.id, gerente, tipo, archivo, calificacion,calif_numerico,hallazgo,recomendacion,riesgo, accion, compromiso,causa_raiz, localidad, empresa,'.auth()->id().'
+                    from informe_temporal i
+                    inner join users as u  on u.usuario = i.responsable');
+                    /**
+        dd('insert into audita_hallazgo(anio, trimestre, auditor, responsable,gerencia, tipo, archivo, calificacion, calificacion_num, hallazgo, recomendacion,riesgo, accion, fecha_com, causa_raiz, proceso, empresa, user_id)
+                    select anio, trimestre, auditor, responsable, gerente, tipo, archivo,, calificacion,calif_numerico,hallazgo,recomendacion,riesgo, accion, compromiso,causa_raiz, localidad, empresa, '.auth()->id().'
+                    from informe_temporal'); */
     }
 }

@@ -15,7 +15,7 @@ class TemporalInforme extends Migration
     {
        Schema::create('informe_temporal', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('hallazgo');
+            $table->string('hallazgo')->nullable();
             $table->string('tipo');
             $table->string('recomendacion');
             $table->string('riesgo');
@@ -26,6 +26,13 @@ class TemporalInforme extends Migration
             $table->string('fecha');
             $table->string('calificacion');
             $table->string('calif_numerico');
+            $table->string('anio')->nullable();
+            $table->string('trimestre')->nullable();
+            $table->string('archivo')->nullable();
+            $table->string('localidad')->nullable();
+            $table->string('empresa')->nullable();
+            $table->string('auditor')->nullable();
+            $table->string('gerente')->nullable();
             $table->timestamps();
         });
     }

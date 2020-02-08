@@ -23,7 +23,9 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 
-
+Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
+	Route::get('guardar_informe', 'hallazgosController@guarda_informe');
+});
 
 #Route::get('/home', 'HomeController@index');
 

@@ -26,6 +26,7 @@
             <td>{{ $hallazgos->responsable }}</td>
             <td>{{ $hallazgos->calificacion }}</td>
             <td>{{ $hallazgos->estatus }}</td>
+            <td></td>
             <td>
                 {!! Form::open(['route' => ['hallazgos.destroy', $hallazgos->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

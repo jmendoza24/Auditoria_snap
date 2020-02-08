@@ -1,9 +1,8 @@
-@extends('layouts.app')
-@section('titulo')Nuevo carga @endsection
+<?php $__env->startSection('titulo'); ?>Nuevo carga <?php $__env->stopSection(); ?>
 
-@section('content')
-<form method="post" action="{{ route('upload.informe')}}" class="form-horizontal" enctype='multipart/form-data'>
-    @csrf
+<?php $__env->startSection('content'); ?>
+<form method="post" action="<?php echo e(route('upload.informe')); ?>" class="form-horizontal" enctype='multipart/form-data'>
+    <?php echo csrf_field(); ?>
 <div class="row">
     <div class="form-group col-sm-4">
         <select class="form-control" name="archivo">
@@ -65,21 +64,23 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($hallazgos as $hallazgos)
+            <?php $__currentLoopData = $hallazgos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $hallazgos): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tr>
                 <td><?php echo substr(nl2br($hallazgos->hallazgo),0,150); ?>...</td>
-                <td>{{$hallazgos->tipo}}</td>
+                <td><?php echo e($hallazgos->tipo); ?></td>
                 <td><?php echo substr(nl2br($hallazgos->recomendacion),0,150); ?>...</td>
-                <td>{{$hallazgos->riesgo}}</td>
-                <td><span class="badge badge-{{($hallazgos->valida==1)?'success':'danger'}}">{{$hallazgos->responsable}}</span></td>
+                <td><?php echo e($hallazgos->riesgo); ?></td>
+                <td><span class="badge badge-<?php echo e(($hallazgos->valida==1)?'success':'danger'); ?>"><?php echo e($hallazgos->responsable); ?></span></td>
                 <td><?php echo substr(nl2br($hallazgos->causa_raiz),0,150); ?>...</td>
                 <td><?php echo substr(nl2br($hallazgos->accion),0,150);?>...</td>
-                <td>{{$hallazgos->compromiso}}</td>
-                <td>{{$hallazgos->calificacion}}</td>
-                <td><span class="badge badge-{{($hallazgos->calif_numerico*1>0)?'success':'danger'}}">{{$hallazgos->calif_numerico}}</span></td>
+                <td><?php echo e($hallazgos->compromiso); ?></td>
+                <td><?php echo e($hallazgos->calificacion); ?></td>
+                <td><span class="badge badge-<?php echo e(($hallazgos->calif_numerico*1>0)?'success':'danger'); ?>"><?php echo e($hallazgos->calif_numerico); ?></span></td>
             </tr>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/auditoria/resources/views/hallazgos/create.blade.php ENDPATH**/ ?>

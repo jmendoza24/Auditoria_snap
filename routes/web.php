@@ -17,9 +17,10 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::post('uploadcsv', 'hallazgosController@upload_informe')->name('upload.informe');
 	Route::resource('hallazgos', 'hallazgosController');
+    Route::resource('users', 'UserController')->middleware('auth');
+
 
 });
-Route::resource('users', 'UserController')->middleware('auth');
 
 
 
@@ -27,3 +28,6 @@ Route::resource('users', 'UserController')->middleware('auth');
 #Route::get('/home', 'HomeController@index');
 
 
+
+
+Route::resource('auditaHallazgos', 'audita_hallazgoController');

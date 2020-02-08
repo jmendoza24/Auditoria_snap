@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\hallazgos;
 
 use App\Models\Temporal_informe;
 use App\Http\Requests\CreatehallazgosRequest;

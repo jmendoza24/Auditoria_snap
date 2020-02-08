@@ -46,6 +46,93 @@
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/extended/form-extended.css')}}">
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/switch.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('app-assets/css/plugins/forms/wizard.css') }}">
+<style type="text/css">
+    .naranja{
+
+       background-color: #A34B0A;
+      color: white;
+    }
+    .azul{
+
+       background-color: #113e49;
+       color: white;
+    }
+    .gris{
+       
+        background-color: #989898;
+       color: white;
+    }
+    .rojo{
+       background-color: #A70C31;
+       color: white;
+    }
+    .texto_rojo{
+      color: #A70C31;
+          
+    }
+    .texto_azul{
+      color: #113e49;
+          
+    }
+    .texto_gris{
+      color: #989898;
+          
+    }
+    .texto_naranja{
+      color: #A34B0A;
+          
+    }
+     .btn_naranja{
+           background-color: #A34B0A;
+           color: white;
+
+        }
+      .btn_azul{
+           background-color: #113e49;
+           color: white;
+
+        }
+        .btn_rojo{
+           background-color: #A70C31;
+           color: white;
+
+        }
+        .btn_gris{
+           background-color: #989898;
+           color: white;
+
+        }
+    .btn_naranja:hover { color: white; }
+    .btn_rojo:hover { color: white; }
+    .btn_gris:hover { color: white; }
+    .btn_azul:hover { color: white; }
+
+    .gris:hover { color: white; }
+    .azul:hover { color: white; }
+    .rojo:hover { color: white; }
+    .btn_gris:hover { color: white; }
+
+
+
+        .texto_rojo:hover { color: white; }
+
+
+
+
+    .nav-link active{
+         color: #852fbe;
+          border-color: #852fbe;
+
+      }
+
+    
+.main-menu.menu-light .navigation > li ul .active > a {
+    color: #A34B0A;
+    font-weight: 500;
+}
+
+
+   </style>
 
   
   <!-- END Page Level CSS-->

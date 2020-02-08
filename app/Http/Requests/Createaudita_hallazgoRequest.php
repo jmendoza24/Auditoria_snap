@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\hallazgos;
+use App\Models\audita_hallazgo;
 
-class UpdatehallazgosRequest extends FormRequest
+class Createaudita_hallazgoRequest extends FormRequest
 {
 
     /**
@@ -25,8 +25,6 @@ class UpdatehallazgosRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = hallazgos::$rules;
-        
-        return $rules;
+        return audita_hallazgo::$rules;
     }
 }

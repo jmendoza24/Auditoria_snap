@@ -1,8 +1,8 @@
-<table class="table display nowrap table-striped table-bordered scroll-horizontal"  id="hallazgos-table">
-    <thead>
-        <tr>
+<table class="table table-striped table-bordered zero-configuration display small" >
+        <thead>
+         <tr class="gris">
             <th>Folio</th>
-            <th>Anio</th>
+            <th>Año</th>
             <th>Trimestre</th>
             <th>Región</th>
             <th>Dirección</th>
@@ -11,7 +11,7 @@
             <th>Responsable</th>
             <th>Calificación</th>
             <th>Estatus</th>
-            <th>Action</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

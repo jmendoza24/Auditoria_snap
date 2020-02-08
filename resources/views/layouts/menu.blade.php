@@ -17,3 +17,7 @@
     <a href="{{ route('hallazgos.index') }}"><i class="fa fa-edit"></i><span>Hallazgos</span></a>
 </li>
 
+<li class="{{ Request::is('auditaHallazgos*') ? 'active' : '' }}">
+    <a href="{{ route('auditaHallazgos.index') }}"><i class="fa fa-edit"></i><span>Audita Hallazgos</span></a>
+</li>
+

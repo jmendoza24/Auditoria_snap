@@ -55,10 +55,11 @@ class UserController extends AppBaseController
     public function store(CreateUserRequest $request)
     {
         $input = $request->all();
+        //dd($input);
         $input['password'] = Hash::make($input['password']);
         $user = $this->userRepository->create($input);
 
-        Flash::success('User saved successfully.');
+       // Flash::success('User saved successfully.');
 
         return redirect(route('users.index'));
     }
@@ -94,8 +95,10 @@ class UserController extends AppBaseController
     {
         $user = $this->userRepository->find($id);
 
+        //dd($user->tipo);
+
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('User no encontrado');
 
             return redirect(route('users.index'));
         }
@@ -116,7 +119,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+           Flash::error('User no encontrado');
 
             return redirect(route('users.index'));
         }
@@ -128,7 +131,7 @@ class UserController extends AppBaseController
         }
         $user = $this->userRepository->update($input, $id);
 
-        Flash::success('User updated successfully.');
+      //  Flash::success('User updated successfully.');
 
         return redirect(route('users.index'));
     }
@@ -147,14 +150,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error('User not found');
+            Flash::error('User no encontrado');
 
             return redirect(route('users.index'));
         }
 
         $this->userRepository->delete($id);
 
-        Flash::success('User deleted successfully.');
+        //Flash::success('User deleted successfully.');
 
         return redirect(route('users.index'));
     }

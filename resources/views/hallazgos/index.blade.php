@@ -1,15 +1,24 @@
 @extends('layouts.app')
-@section('titulo')
-    Hallazgos 
-@endsection
+ 
 @section('content')
-<div class="col-md-12">
-    <h1 class="pull-right">
-       <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('hallazgos.create') !!}">+ Carga</a>
-    </h1>
-</div>
-<br> <br><br>
-<div class="col-md-12">
-    @include('hallazgos.table')
-</div>
+    
+        <h1 class="pull-left">Hallazgos</h1>
+        <br>
+        <span>
+        <a class="btn btn_azul pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('hallazgos.create') !!}"><i class="fa fa-plus"></i> Carga</a>
+        </span>
+        @include('flash::message')
+        <br><br>
+        <div class="" style="overflow: auto;">
+                    @include('hallazgos.table')
+              
+
+        </div>
 @endsection
+
+
+
+
+
+
+

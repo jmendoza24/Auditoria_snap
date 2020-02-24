@@ -1,8 +1,6 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{{ $hallazgos->id }}</p>
-</div>
+
+
+
 
 <!-- Anio Field -->
 <div class="form-group">

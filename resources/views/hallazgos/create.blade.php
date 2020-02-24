@@ -1,5 +1,9 @@
 @extends('layouts.app')
-@section('titulo')Nuevo carga @if($valido==1) <br><br> <span class="pull-right btn btn-primary" onclick="guardar_informe()">Guardar</span> @endif @endsection
+@section('titulo')Nuevo carga @if($valido==1) <br><br>
+<a title="Regresar" class="btn btn_naranja pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('hallazgos.index') !!}"> <i class="fa fa-undo"></i> Regresar</a><br><br><br>
+<a title="Guardar Formato" class="btn btn_gris pull-right" style="margin-top: -10px;margin-bottom: 5px" href="#" onclick="guardar_informe()"> <i class="fa fa-floppy-o"></i> Guardar</a>
+
+ @endif @endsection
 
 @section('content')
 @if($valido==0)
@@ -18,50 +22,66 @@
         <input type="file" class="form-control" name="archivo" required="">
     </div>
     <div class="form-group col-sm-4">
-        <select class="form-control" name="narchivo" required="">
-            <option value="">Archivo...</option>
-            <option value="Cedis">Cedis</option>
-            <option value="Plantas">Plantas</option>
-        </select>
+         <select class="form-control select2" style="width: 100%" id="narchivo" name="narchivo"  required="required">
+           <option value="">Selecciona Documento</option>
+            @foreach($documentos as $tipo)
+               <option 
+                    value="{{ $tipo->id }}" 
+               >{{ $tipo->nombre_documento }}</option>
+            @endforeach   
+         </select>
     </div>
     <div class="form-group col-sm-4">
-        <select class="form-control" name="localidad" required="">
-            <option value="">Localidad</option>
-            <option value="Acuña">Acuña</option>
-            <option value="Colima">Colima</option>
-        </select>
+        <select class="form-control select2" style="width: 100%" id="localidad" name="localidad"  required="required">
+           <option value="">Localidad</option>
+            @foreach($localidad as $tipo)
+               <option 
+                    value="{{ $tipo->id }}" 
+               >{{ $tipo->nombre_loc }}</option>
+            @endforeach   
+         </select>
+
     </div>
     <div class="form-group col-sm-4">
-        <select class="form-control" name="empresa" required="">
-            <option value="">Empresa...</option>
-            <option value="Qualtia">Qualtia</option>
-            <option value="XO">XO</option>
-        </select>
+         <select class="form-control select2" style="width: 100%" id="empresa" name="empresa"  required="required">
+           <option value="">Empresa</option>
+            @foreach($empresas as $tipo)
+               <option 
+                    value="{{ $tipo->id }}" 
+               >{{ $tipo->razon_social }}</option>
+            @endforeach   
+         </select>
+    </div>
+     <div class="form-group col-sm-4">
+        <select class="form-control select2" style="width: 100%" id="auditor" name="auditor"  required="required">
+             <option value="">Auditor</option>
+              @foreach($auditor as $tipo)
+                 <option 
+                      value="{{ $tipo->id }}" 
+                 >{{ $tipo->usuario }}</option>
+              @endforeach   
+           </select> 
+    </div>
+    <div class="form-group col-sm-4">
+        <select class="form-control select2" style="width: 100%" id="gerente" name="gerente"  required="required">
+             <option value="">Gerente</option>
+              @foreach($gerentes as $tipo2)
+                 <option 
+                      value="{{ $tipo2->id }}" 
+                 >{{ $tipo2->name }}</option>
+              @endforeach   
+           </select>
     </div> 
 </div>
 <div class="row">
-    <div class="form-group col-sm-4">
-        <input type="text" name="pais" id="pais" class="form-control" placeholder="País">
-    </div>
-    <div class="form-group col-sm-4">
-        <select class="form-control" name="auditor" required="">
-            <option value="">Auditor...</option>
-            <option value="1">Jacob</option>
-            <option value="2">Auditor 2</option>
-        </select>
-    </div>
-    <div class="form-group col-sm-4">
-        <select class="form-control" name="gerente" required="">
-            <option value="">Gerente...</option>
-            <option value="1">Jacob</option>
-            <option value="2">Gte 2</option>
-        </select>
-    </div>
+   
+   
     
-    <div class="form-group col-sm-4" style="text-align: left;">
+    <div class="form-group col-sm-12">
         <br>
-        <input type="submit" class="btn btn-success" value="Cargar informe">
-    </div>  
+
+         <button title="Cargar Informe" type="submit" class="btn btn_gris pull-right"><i class="fa fa-upload"></i> Cargar Informe</button>
+  
 </div>
 
 </form>

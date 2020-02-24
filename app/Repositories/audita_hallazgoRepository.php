@@ -59,7 +59,11 @@ class audita_hallazgoRepository extends BaseRepository
         'user_id',
         'enviar_mail',
         'user_id_resp',
-        'tipo'
+        'tipo',
+        'calificacion_num',
+        'causa_raiz',
+        'empresa'
+
     ];
 
     /**

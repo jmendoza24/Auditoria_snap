@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\hallazgos;
+use App\Models\info_comentarios;
 
 use App\Http\Requests\Createaudita_hallazgoRequest;
 use App\Http\Requests\Updateaudita_hallazgoRequest;
@@ -10,6 +11,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use DB;
 
 class audita_hallazgoController extends AppBaseController
 {
@@ -32,8 +34,9 @@ class audita_hallazgoController extends AppBaseController
     {
         $auditaHallazgos = $this->auditaHallazgoRepository->all();
 
-        return view('audita_hallazgos.index')
-            ->with('auditaHallazgos', $auditaHallazgos);
+
+
+        return view('audita_hallazgos.index')->with('auditaHallazgos', $auditaHallazgos);
     }
 
     /**
@@ -74,14 +77,26 @@ class audita_hallazgoController extends AppBaseController
     public function show($id)
     {
         $auditaHallazgo = $this->auditaHallazgoRepository->find($id);
+        
+        $id_hallazgo=$auditaHallazgo->id;
+        $infoComentarios_mod = new info_comentarios;
+        $infoComentarios=$infoComentarios_mod->carga_comentarios($id_hallazgo);
 
-        if (empty($auditaHallazgo)) {
-            Flash::error('Audita Hallazgo not found');
+        return view('audita_hallazgos.show',compact('auditaHallazgo','infoComentarios'));
+    }
 
-            return redirect(route('auditaHallazgos.index'));
-        }
+     public function show2(Request $request)
+    {
+        
+        $input = $request->all();
+        $id=$input['id'];
 
-        return view('audita_hallazgos.show')->with('auditaHallazgo', $auditaHallazgo);
+        $auditaHallazgo = $this->auditaHallazgoRepository->find($id);
+        $id_hallazgo=$auditaHallazgo->id;
+        $infoComentarios_mod = new info_comentarios;
+        $infoComentarios=$infoComentarios_mod->carga_comentarios($id_hallazgo);
+
+        return view('audita_hallazgos.show',compact('auditaHallazgo','infoComentarios','id'));
     }
 
     /**
@@ -93,15 +108,14 @@ class audita_hallazgoController extends AppBaseController
      */
     public function edit($id)
     {
-        $auditaHallazgo = $this->auditaHallazgoRepository->find($id);
+        $filtro = new hallazgos;
 
-        if (empty($auditaHallazgo)) {
-            Flash::error('Audita Hallazgo not found');
+        $auditaHallazgo = hallazgos::find($id);
+        $responsables = $filtro->tipo_persona(1);
+        $auditores = $filtro->tipo_persona(2);
+        $gerentes = $filtro->tipo_persona(3);
 
-            return redirect(route('auditaHallazgos.index'));
-        }
-
-        return view('audita_hallazgos.edit')->with('auditaHallazgo', $auditaHallazgo);
+        return view('audita_hallazgos.edit',compact('auditaHallazgo','responsables','auditores','gerentes'));
     }
 
     /**
@@ -112,21 +126,17 @@ class audita_hallazgoController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, Updateaudita_hallazgoRequest $request)
-    {
-        $auditaHallazgo = $this->auditaHallazgoRepository->find($id);
+    public function update(Request $request)
+    {   
+        $input = $request->all();
+       // dd($input);
 
-        if (empty($auditaHallazgo)) {
-            Flash::error('Audita Hallazgo not found');
+        $auditaHallazgo = $this->auditaHallazgoRepository->find($request['id']);
 
-            return redirect(route('auditaHallazgos.index'));
-        }
+        $auditaHallazgo = $this->auditaHallazgoRepository->update($input, $request['id']);
 
-        $auditaHallazgo = $this->auditaHallazgoRepository->update($request->all(), $id);
 
-        Flash::success('Audita Hallazgo updated successfully.');
-
-        return redirect(route('auditaHallazgos.index'));
+        return redirect()->back();
     }
 
     /**

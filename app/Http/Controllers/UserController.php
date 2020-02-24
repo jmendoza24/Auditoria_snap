@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Hash;
+use DB;
 
 class UserController extends AppBaseController
 {
@@ -54,9 +55,12 @@ class UserController extends AppBaseController
      */
     public function store(CreateUserRequest $request)
     {
-        $input = $request->all();
-        //dd($input);
+        $input = $request->all();    
+        $email = explode("@",$input['email']); 
+        $input['usuario']=$email[0];
         $input['password'] = Hash::make($input['password']);
+        $input['usuario'] = 
+
         $user = $this->userRepository->create($input);
 
        // Flash::success('User saved successfully.');
@@ -155,7 +159,8 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        $this->userRepository->delete($id);
+     //   $this->userRepository->delete($id);
+        DB::table('users')->delete($id);
 
         //Flash::success('User deleted successfully.');
 

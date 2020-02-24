@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\hallazgos;
+use App\User;
+
+use App\Models\documentos;
+use App\Models\empresas;
+use App\Models\localidad;
+
+
 
 use App\Models\Temporal_informe;
 use App\Http\Requests\CreatehallazgosRequest;
@@ -13,6 +20,7 @@ use Flash;
 use Response;
 use DB;
 use Auth;
+use View;
 
 class hallazgosController extends AppBaseController
 {
@@ -33,10 +41,13 @@ class hallazgosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $hallazgos = $this->hallazgosRepository->all();
+        $hallazgos = hallazgos::where('responsable',auth()->id())
+                    ->orwhere('auditor',auth()->id())
+                    ->orwhere('auditor2',auth()->id())
+                    ->orwhere('gerencia',auth()->id())
+                    ->get();
 
-        return view('hallazgos.index')
-            ->with('hallazgos', $hallazgos);
+        return view('hallazgos.index',compact('hallazgos'));
     }
 
     /**
@@ -48,7 +59,13 @@ class hallazgosController extends AppBaseController
         $object = new Temporal_informe();
         $valido = 1;
         $hallazgos = $object->informe_temporal();
+        $gerentes=User::where('tipo',3)->get();
+        $auditor=User::where('tipo',2)->get();
+        $empresas=empresas::all();
+        $documentos=documentos::all();
+        $localidad=localidad::all();
 
+//dd($gerentes);
         foreach ($hallazgos as $hall) {
             if($hall->valida==0){
                 $valido=0;
@@ -56,7 +73,7 @@ class hallazgosController extends AppBaseController
         }
 
        # dd($valido);
-        return view('hallazgos.create',compact('hallazgos','valido'));
+        return view('hallazgos.create',compact('hallazgos','valido','gerentes','auditor','empresas','documentos','localidad'));
     }
 
     /**
@@ -72,8 +89,6 @@ class hallazgosController extends AppBaseController
 
         $hallazgos = $this->hallazgosRepository->create($input);
 
-        Flash::success('Hallazgos saved successfully.');
-
         return redirect(route('hallazgos.index'));
     }
 
@@ -88,11 +103,7 @@ class hallazgosController extends AppBaseController
     {
         $hallazgos = $this->hallazgosRepository->find($id);
 
-        if (empty($hallazgos)) {
-            Flash::error('Hallazgos not found');
-
-            return redirect(route('hallazgos.index'));
-        }
+        
 
         return view('hallazgos.show')->with('hallazgos', $hallazgos);
     }
@@ -104,17 +115,15 @@ class hallazgosController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+        $filtro = new hallazgos;
+
         $hallazgos = $this->hallazgosRepository->find($id);
+        $responsables = $filtro->tipo_persona(1);
+        $auditores = $filtro->tipo_persona(2);
+        $gerentes = $filtro->tipo_persona(3);
 
-        if (empty($hallazgos)) {
-            Flash::error('Hallazgos not found');
-
-            return redirect(route('hallazgos.index'));
-        }
-
-        return view('hallazgos.edit')->with('hallazgos', $hallazgos);
+        return view('hallazgos.edit',compact('hallazgos','responsables','auditores','gerentes'));
     }
 
     /**
@@ -127,17 +136,9 @@ class hallazgosController extends AppBaseController
      */
     public function update($id, UpdatehallazgosRequest $request)
     {
-        $hallazgos = $this->hallazgosRepository->find($id);
-
-        if (empty($hallazgos)) {
-            Flash::error('Hallazgos not found');
-
-            return redirect(route('hallazgos.index'));
-        }
+        $hallazgos = $this->hallazgosRepository->find($id);       
 
         $hallazgos = $this->hallazgosRepository->update($request->all(), $id);
-
-        Flash::success('Hallazgos updated successfully.');
 
         return redirect(route('hallazgos.index'));
     }
@@ -155,15 +156,7 @@ class hallazgosController extends AppBaseController
     {
         $hallazgos = $this->hallazgosRepository->find($id);
 
-        if (empty($hallazgos)) {
-            Flash::error('Hallazgos not found');
-
-            return redirect(route('hallazgos.index'));
-        }
-
         $this->hallazgosRepository->delete($id);
-
-        Flash::success('Hallazgos deleted successfully.');
 
         return redirect(route('hallazgos.index'));
     }
@@ -223,12 +216,23 @@ class hallazgosController extends AppBaseController
     function guarda_informe(){
 
        $var =  db::select('insert into audita_hallazgo(anio, trimestre, auditor, responsable,gerencia, tipo, archivo, calificacion, calificacion_num, hallazgo, recomendacion,riesgo, accion, fecha_com, causa_raiz, proceso, empresa, user_id)
-                    select anio, trimestre, auditor, u.id, gerente, tipo, archivo, calificacion,calif_numerico,hallazgo,recomendacion,riesgo, accion, compromiso,causa_raiz, localidad, empresa,'.auth()->id().'
+                    select anio, trimestre, auditor, u.id, gerente, i.tipo, archivo, calificacion,calif_numerico,hallazgo,recomendacion,riesgo, accion, compromiso,causa_raiz, localidad, empresa,'.auth()->id().'
                     from informe_temporal i
                     inner join users as u  on u.usuario = i.responsable');
                     /**
         dd('insert into audita_hallazgo(anio, trimestre, auditor, responsable,gerencia, tipo, archivo, calificacion, calificacion_num, hallazgo, recomendacion,riesgo, accion, fecha_com, causa_raiz, proceso, empresa, user_id)
                     select anio, trimestre, auditor, responsable, gerente, tipo, archivo,, calificacion,calif_numerico,hallazgo,recomendacion,riesgo, accion, compromiso,causa_raiz, localidad, empresa, '.auth()->id().'
                     from informe_temporal'); */
+
+        return 1;
+    }
+
+    function muestra_hallazgo(Request $request){
+        $hallazgo = hallazgos::where('id',$request->id_hallazgo)->get();
+        $hallazgo = $hallazgo[0];
+
+        $options = view('hallazgos.hallazgo_det',compact('hallazgo'))->render();
+
+        return json_encode($options);
     }
 }

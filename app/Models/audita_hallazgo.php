@@ -59,13 +59,7 @@ class audita_hallazgo extends Model
 
     public $table = 'audita_hallazgo';
     
-    const CREATED_AT = 'created_at';
-    const UPDATED_AT = 'updated_at';
-
-
-    protected $dates = ['deleted_at'];
-
-
+    public $timestamps = false;
 
     public $fillable = [
         'id',
@@ -110,7 +104,11 @@ class audita_hallazgo extends Model
         'user_id',
         'enviar_mail',
         'user_id_resp',
-        'tipo'
+        'tipo',
+        'calificacion_num',
+        'causa_raiz',
+        'empresa'
+
     ];
 
     /**
@@ -161,7 +159,11 @@ class audita_hallazgo extends Model
         'user_id' => 'string',
         'enviar_mail' => 'integer',
         'user_id_resp' => 'string',
-        'tipo' => 'string'
+        'tipo' => 'string',
+        'calificacion_num' => 'integer',
+        'causa_raiz' => 'text',
+        'empresa' => 'string',
+
     ];
 
     /**

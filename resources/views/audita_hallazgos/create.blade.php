@@ -1,23 +1,16 @@
 @extends('layouts.app')
-
-@section('content')
-    <section class="content-header">
-        <h1>
-            Audita Hallazgo
-        </h1>
-    </section>
-    <div class="content">
-        @include('adminlte-templates::common.errors')
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'auditaHallazgos.store']) !!}
-
-                        @include('audita_hallazgos.fields')
-
-                    {!! Form::close() !!}
-                </div>
-            </div>
-        </div>
-    </div>
+@section('titulo')Edita Hallazgo 
 @endsection
+ 
+@section('content')
+<a class="btn btn_naranja pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('hallazgos.index') !!}"> <i class="fa fa-undo"></i> Regresar</a>
+<br><br><br>
+@php($editar = 0)      
+{!! Form::open(['route' => 'auditaHallazgos.store','class'=>'needs-validation','novalidate','enctype'=>'multipart/form-data']) !!}
+         @include('audita_hallazgos.fields')
+{!! Form::close() !!}
+@endsection
+
+
+
+

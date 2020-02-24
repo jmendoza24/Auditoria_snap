@@ -11,8 +11,6 @@
         <br><br>
         <div class="" style="overflow: auto;">
                     @include('audita_hallazgos.table')
-              
-
         </div>
 @endsection
 

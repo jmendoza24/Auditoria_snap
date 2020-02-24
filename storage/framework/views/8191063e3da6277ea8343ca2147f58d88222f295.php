@@ -1,23 +1,4 @@
-<script type="text/javascript">
-  function borra_usuario(id) {
   
-  $.confirm({
-           animation: 'zoom',
-           icon: 'la la-warning',
-           title: 'Mensaje',
-           cancelButtonClass: 'btn-danger',
-           content: '<h3 style="text-aling:center" class="texto_rojo"><strong>¿Estas seguro que deseas eliminar este usuario?</strong></h3>',
-           buttons: {
-               Aceptar: function () {
-                 
-                 $("#us").submit();
-               },
-               cancelar: function () {
-               }
-           }
-       });
-}
-</script>  
   <table class="table table-striped table-bordered zero-configuration display" >
         <thead>
          <tr class="gris">

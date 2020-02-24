@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 /**
  * Class hallazgos
@@ -173,6 +174,10 @@ class hallazgos extends Model
     public static $rules = [
         
     ];
+
+    function tipo_persona($tipo){
+        return db::table('users')->where('tipo',$tipo)->get();
+    }
 
     
 }

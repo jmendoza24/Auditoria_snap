@@ -134,7 +134,7 @@
 
    </style>
 
-  
+   
   <!-- END Page Level CSS-->
   <!-- BEGIN Custom CSS-->
   <link rel="stylesheet" type="text/css" href="{{ url('assets/css/style.css') }}">
@@ -142,7 +142,9 @@
   <!-- END Custom CSS-->
 </head>
 
-<body class="vertical-layout vertical-menu 2-columns   menu-expanded fixed-navbar" data-open="click" data-menu="vertical-menu" data-col="2-columns">
+
+<body class="horizontal-layout horizontal-menu 2-columns   menu-expanded" data-open="hover"
+data-menu="horizontal-menu" data-col="2-columns">
 @if (!Auth::guest())
     
         <!-- Main Header -->
@@ -299,10 +301,12 @@
   <script src="{{ url('app-assets/vendors/js/gallery/photo-swipe/photoswipe.min.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/vendors/js/gallery/photo-swipe/photoswipe-ui-default.min.js')}}" type="text/javascript"></script>
   <script src="{{ url('app-assets/js/scripts/gallery/photo-swipe/photoswipe-script.js')}}" type="text/javascript"></script>
-  <script type="text/javascript" src="{{ url('assets/js/scripts.js')}}"></script>
+  <script type="text/javascript" src="{{ url('app-assets/js/scripts/scripts.js')}}"></script>
+  <script type="text/javascript" src="{{ url('app-assets/vendors/js/ui/jquery.sticky.js')}}"></script>
+  <script src="{{ url('assets/js/scripts.js') }}" type="text/javascript"></script>
   @yield('script')
 
-  
+
   <!-- END STACK JS-->
   <!-- BEGIN PAGE LEVEL JS-->
    
@@ -320,9 +324,10 @@
       </div>
       <div class="modal-body" id="contenido">
       </div>
+      <!--
       <div class="modal-footer" id="footer_primary">
         <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cerrar</button>
-      </div>
+      </div>--->
     </div>
   </div>
 </div>

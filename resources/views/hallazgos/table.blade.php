@@ -3,14 +3,9 @@
          <tr class="gris">
             <th>Folio</th>
             <th>Año</th>
-            <th>Trimestre</th>
-            <th>Región</th>
-            <th>Dirección</th>
-            <th>Auditor</th>
-            <th>Proceso</th>
-            <th>Responsable</th>
-            <th>Calificación</th>
-            <th>Estatus</th>
+            <th>Detalle</th>
+            <th>Solicitante</th>
+            <th>Aprobación</th>
             <th></th>
         </tr>
     </thead>
@@ -18,25 +13,24 @@
     @foreach($hallazgos as $hallazgos)
         <tr>
             <td>{{ $hallazgos->id }}</td>
-            <td>{{ $hallazgos->anio }}</td>
-            <td>{{ $hallazgos->trimestre }}</td>
-            <td>{{ $hallazgos->region }}</td>
-            <td>{{ $hallazgos->direccion }}</td>
-            <td>{{ $hallazgos->auditor }}</td>
-            <td>{{ $hallazgos->responsable }}</td>
-            <td>{{ $hallazgos->calificacion }}</td>
-            <td>{{ $hallazgos->estatus }}</td>
-            <td></td>
+            <td>{{ $hallazgos->anio }} ({{ $hallazgos->trimestre }})</td>
+            <td><label style="cursor: pointer;" data-toggle="modal" data-backdrop="false" data-target="#primary" onclick="muestra_hallazgo({{ $hallazgos->id }})"> {{ substr($hallazgos->hallazgo,0,100) }}</label></td>
             <td>
-                {!! Form::open(['route' => ['hallazgos.destroy', $hallazgos->id], 'method' => 'delete']) !!}
-                <div class='btn-group'>
-                    <a href="{{ route('hallazgos.show', [$hallazgos->id]) }}" class='btn btn-default btn-xs'><i class="fa fa-eye"></i></a>
-                    <a href="{{ route('hallazgos.edit', [$hallazgos->id]) }}" class='btn btn-default btn-xs'><i class="fa fa-edit"></i></a>
-                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                {{ $hallazgos->archivo }} : {{ $hallazgos->proceso }} <br>
+                {{ $hallazgos->depto }}
+            </td>
+            <td>{{ $hallazgos->estatus }}</td>
+            <td style="text-align: center;">                 
+                <div class="btn-group" role="group" aria-label="Second Group">   
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <a title="Ver"  href="{{ route('auditaHallazgos2', ['id'=>$hallazgos->id]) }}" class="btn  btn_azul  btn-group-sm btn" href="#"><i class="fa fa-eye"></i></a>
+                      <a title="Editar" href="{{ route('auditaHallazgos.edit', [$hallazgos->id]) }}"  class="btn  btn_gris  btn-group-sm btn" href="#"><i class="fa fa-pencil"></i></a>
+                      <a title="Eliminar" class="btn  btn_rojo btn-group-sm btn" href="#" onclick="crf_borrafase()"><i class="fa fa-trash"></i></a>
+                  </div>                
                 </div>
-                {!! Form::close() !!}
             </td>
         </tr>
     @endforeach
     </tbody>
 </table>
+

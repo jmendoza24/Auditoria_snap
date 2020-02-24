@@ -10,7 +10,9 @@ function guardar_informe(){
                           dataType: 'json',
                           type:  'get',
                           success:  function (response) { 
-                          $.alert('Guardado');    
+                          $.alert('Guardado');  
+                           window.location.href = 'hallazgos';
+
                           }
                       });
                 },
@@ -18,4 +20,17 @@ function guardar_informe(){
                 }
             }
         });
+}
+
+
+function muestra_hallazgo(hallazgo){
+  $.ajax({
+      data: {'id_hallazgo':hallazgo},
+      url: '/api/v1/muestra_hallazgo',
+      dataType: 'json',
+      type:  'get',
+      success:  function (response) { 
+        $("#contenido").html(response);
+      }
+  });
 }

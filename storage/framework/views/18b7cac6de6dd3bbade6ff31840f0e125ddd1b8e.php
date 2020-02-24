@@ -26,19 +26,21 @@
             <td><?php echo e($hallazgos->responsable); ?></td>
             <td><?php echo e($hallazgos->calificacion); ?></td>
             <td><?php echo e($hallazgos->estatus); ?></td>
-            <td>
-                <?php echo Form::open(['route' => ['hallazgos.destroy', $hallazgos->id], 'method' => 'delete']); ?>
-
-                <div class='btn-group'>
-                    <a href="<?php echo e(route('hallazgos.show', [$hallazgos->id])); ?>" class='btn btn-default btn-xs'><i class="fa fa-eye"></i></a>
-                    <a href="<?php echo e(route('hallazgos.edit', [$hallazgos->id])); ?>" class='btn btn-default btn-xs'><i class="fa fa-edit"></i></a>
-                    <?php echo Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]); ?>
-
+            <td></td>
+            <td style="text-align: center;">                 
+                <div class="btn-group" role="group" aria-label="Second Group">   
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                      <a title="Ver"  href="<?php echo e(route('auditaHallazgos2', ['id'=>$hallazgos->id])); ?>" class="btn  btn_azul  btn-group-sm btn" href="#"><i class="fa fa-eye"></i></a>
+                      <a title="Editar" href="<?php echo e(route('auditaHallazgos.edit', [$hallazgos->id])); ?>"  class="btn  btn_gris  btn-group-sm btn" href="#"><i class="fa fa-pencil"></i></a>
+                      <a title="Eliminar" class="btn  btn_rojo btn-group-sm btn" href="#" onclick="crf_borrafase()"><i class="fa fa-trash"></i></a>
+                  </div>                
                 </div>
-                <?php echo Form::close(); ?>
-
             </td>
+
+            
         </tr>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </tbody>
-</table><?php /**PATH /var/www/html/auditoria/resources/views/hallazgos/table.blade.php ENDPATH**/ ?>
+</table>
+
+<?php /**PATH /var/www/html/auditoria/resources/views/hallazgos/table.blade.php ENDPATH**/ ?>

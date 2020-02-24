@@ -6,7 +6,6 @@
         <span>
         <a class="btn btn_azul pull-right" style="margin-top: -10px;margin-bottom: 5px" href="<?php echo route('hallazgos.create'); ?>"><i class="fa fa-plus"></i> Carga</a>
         </span>
-        <?php echo $__env->make('flash::message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <br><br>
         <div class="" style="overflow: auto;">
                     <?php echo $__env->make('hallazgos.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

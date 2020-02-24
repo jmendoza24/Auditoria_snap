@@ -1,19 +1,5 @@
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-dark bg-gradient-x-primary navbar-shadow">
-    <div class="navbar-wrapper">
-      <div class="navbar-header">
-        <ul class="nav navbar-nav flex-row">
-          <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-          <li class="nav-item">
-            <a class="navbar-brand" href="<?php echo e(route('home')); ?>">
-              <img class="brand-logo" alt="stack admin logo" src="<?php echo e(url('app-assets/images/logo/stack-logo-light.png')); ?>">
-              <!--<h2 class="brand-text">Auditoria</h2>-->
-            </a>
-          </li>
-          <li class="nav-item d-md-none">
-            <a class="nav-link open-navbar-container" data-toggle="collapse" data-target="#navbar-mobile"><i class="fa fa-ellipsis-v"></i></a>
-          </li>
-        </ul>
-      </div>
+ <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-static-top navbar-dark bg-gradient-x-grey-blue navbar-border navbar-brand-center">
+    <div class="navbar-wrapper">      
       <div class="navbar-container content">
         <div class="collapse navbar-collapse" id="navbar-mobile">
           <ul class="nav navbar-nav mr-auto float-left">
@@ -47,11 +33,18 @@
       </div>
     </div>
   </nav>
-  <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="main-menu-content">
-      <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-        
-       <?php echo $__env->make('layouts.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
+
+ <div class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-light navbar-without-dd-arrow navbar-shadow menu-border"
+  role="navigation" data-menu="menu-wrapper">
+    <!-- Horizontal menu content-->
+    <div class="navbar-container main-menu-content" data-menu="menu-container">
+      <!-- include ../../../includes/mixins-->
+      <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+               <?php echo $__env->make('layouts.menu', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       </ul>
     </div>
-  </div><?php /**PATH /var/www/html/auditoria/resources/views/layouts/sidebar.blade.php ENDPATH**/ ?>
+    <!-- /horizontal menu content-->
+  </div> 
+  <?php /**PATH /var/www/html/auditoria/resources/views/layouts/sidebar.blade.php ENDPATH**/ ?>

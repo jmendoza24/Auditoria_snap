@@ -86,7 +86,7 @@
             <td>{{ $auditaHallazgo->aud_reincidente }}</td>
             <td>{{ $auditaHallazgo->aud_com_anexo }}</td>
             <td>{{ $auditaHallazgo->aud_fir_val }}</td>
-            <td>{{ $auditaHallazgo->aud_fec_asignado }}</td>
+            <td>{{ $auditaHallazgo->aud_fec_asignado }}</td> 
             <td>{{ $auditaHallazgo->aud_fec_revisado }}</td>
             <td>{{ $auditaHallazgo->aud_fec_final }}</td>
             <td>{{ $auditaHallazgo->user_id }}</td>

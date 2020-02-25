@@ -1,149 +1,178 @@
-            <div class="card-content">
-                  <div class="table-responsive">
-                   <table class="table-responsive table table-bordered" >
-                     <tr>
-                       <td><h5 class="">Año: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->anio }}</h5></td>
-                       <td><h5 class="">Trimestre: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->trimestre }}</h5></td>
-                     </tr>
-                     <tr>
-                        <td><h5 class="">Dirección: </h5></td>
-                        <td><h5 class="">{{ $auditaHallazgo->direccion }}</h5></td>
-                        <td><h5 class="">Region: </h5></td>
-                        <td><h5 class="">{{ $auditaHallazgo->region }}</h5>
-                      </td>
-                    </tr>
-                      
-                    <tr>
-                        <td><h5 class="">Auditor 1: </h5></td>
-                        <td><h5 class="">{{ $auditaHallazgo->auditor }}</h5></td>
-                        <td><h5 class="">Auditor 2: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->auditor2 }}</h5></td>
-                    </tr>
-                     <tr>
-                       <td><h5 class="">Proceso: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->proceso }}</h5></td>
-                       <td><h5 class="">Depto: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->depto }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Area: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->area }}</h5></td>
-                       <td><h5 class="">Responsable: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->responsable }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Calificacion: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->calificacion }}</h5></td>
-                       <td><h5 class="">Responsable: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->responsable }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Fecha Inf: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->fecha_inf }}</h5></td>
-                       <td><h5 class="">Fecha Com: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->fecha_com }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Estatus: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->estatus }}</h5></td>
-                       <td><h5 class="">Archivo: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->archivo }}</h5></td>
-                     </tr>
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-bordered table-striped small" >
+      <tr>
+        <td>Periodo</td>
+        <td>Año: {{ $auditaHallazgo->anio }}, Trimestre: {{ $auditaHallazgo->trimestre }}, Calificación: {{ $auditaHallazgo->calificacion}}, Folio {{ $auditaHallazgo->id }} </td>
+      </tr>
+      <tr>
+        <td>Responsable:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Auditor:</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Jefatura/Ger. (Del responsable):</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Gerencia/Dir.(Del responsable): </td>
+        <td></td>
+      </tr>
+      
+    </table>
+    <table class="table table-bordered table-striped small" >
 
-                     <tr>
-                       <td><h5 class="">Fila: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->fila }}</h5></td>
-                       <td><h5 class="">Fila Id: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->fila_id }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Anexo: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->anexo }}</h5></td>
-                       <td><h5 class="">Comentarios: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->comentarios }}</h5></td>
-                     </tr>
-                     
-                     <tr>
-                       <td><h5 class="">Num Apoyo: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->num_apoyo }}</h5></td>
-                       <td><h5 class="">Jefatura: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->jefatura }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Gerencia: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->gerencia }}</h5></td>
-                       <td><h5 class="">Fec Usr: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->fec_usr }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Aud Tip Val: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_tip_val }}</h5></td>
-                       <td><h5 class="">Aud Monto: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_monto }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Año Folio: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->ano_folio }}</h5></td>
-                       <td><h5 class="">Aud Reincidente: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_reincidente }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Aud Com Anexo: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_com_anexo }}</h5></td>
-                       <td><h5 class="">Aud Fir Val: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_fir_val }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Aud Fec Asignado: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_fec_asignado }}</h5></td>
-                       <td><h5 class="">Aud Fec Revisado: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_fec_revisado }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Aud Fec Final: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->aud_fec_final }}</h5></td>
-                       <td><h5 class="">User Id: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->user_id }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Enviar Mail: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->enviar_mail }}</h5></td>
-                       <td><h5 class="">User Id Resp: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->user_id_resp }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td><h5 class="">Tipo: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->tipo }}</h5></td>
-                       
-                       <td><h5 class="">Situación: </h5></td>
-                       <td><h5 class="">{{ $auditaHallazgo->situacion }}</h5></td>
-                      </tr>
-                      <tr>
-                       <td colspan="2"><h5 class="">Hallazgo: </h5></td> 
-                       <td colspan="2"><h5 class="">{{ $auditaHallazgo->hallazgo }}</h5></td>
-                     
-                     </tr>
-                     <tr>
-                       <td colspan="2"><h5 class="">Recomendacion: </h5></td>
-                       <td colspan="2"><h5 class="">{{ $auditaHallazgo->recomendacion }}</h5></td>   
-                     </tr>
-                     <tr>
-                       <td colspan="2"><h5 class="">Riesgo: </h5></td>
-                       <td colspan="2"><h5 class="">{{ $auditaHallazgo->riesgo }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td colspan="2"><h5 class="">Accion: </h5></td>
-                       <td colspan="2"><h5 class="">{{ $auditaHallazgo->accion }}</h5></td>
-                     </tr>
-                     <tr>
-                       <td colspan="2"><h5 class="">Accion2: </h5></td>
-                       <td colspan="2"><h5 class="">{{ $auditaHallazgo->accion2 }}</h5></td>
-                     </tr>                      
-                  </table>    
-              </div>
-            </div>
-     
+       <tr>
+         <td>Año: </td>
+         <td></td>
+         <td>Trimestre: </td>
+         <td></td>
+       </tr>
+       <tr>
+          <td>Dirección: </td>
+          <td>{{ $auditaHallazgo->direccion }}</td>
+          <td>Region: </td>
+          <td>{{ $auditaHallazgo->region }}
+        </td>
+      </tr>
+      <tr>
+          <td>Auditor 1: </td>
+          <td>{{ $auditaHallazgo->auditor }}</td>
+          <td>Auditor 2: </td>
+         <td>{{ $auditaHallazgo->auditor2 }}</td>
+      </tr>
+       <tr>
+         <td>Proceso: </td>
+         <td>{{ $auditaHallazgo->proceso }}</td>
+         <td>Depto: </td>
+         <td>{{ $auditaHallazgo->depto }}</td>
+       </tr>
+       <tr>
+         <td>Area: </td>
+         <td>{{ $auditaHallazgo->area }}</td>
+         <td>Responsable: </td>
+         <td>{{ $auditaHallazgo->responsable }}</td>
+       </tr>
+       <tr>
+         <td>Calificacion: </td>
+         <td>{{ $auditaHallazgo->calificacion }}</td>
+         <td>Responsable: </td>
+         <td>{{ $auditaHallazgo->responsable }}</td>
+       </tr>
+       <tr>
+         <td>Fecha Inf: </td>
+         <td>{{ $auditaHallazgo->fecha_inf }}</td>
+         <td>Fecha Com: </td>
+         <td>{{ $auditaHallazgo->fecha_com }}</td>
+       </tr>
+       <tr>
+         <td>Estatus: </td>
+         <td>{{ $auditaHallazgo->estatus }}</td>
+         <td>Archivo: </td>
+         <td>{{ $auditaHallazgo->archivo }}</td>
+       </tr>
 
-
+       <tr>
+         <td>Fila: </td>
+         <td>{{ $auditaHallazgo->fila }}</td>
+         <td>Fila Id: </td>
+         <td>{{ $auditaHallazgo->fila_id }}</td>
+       </tr>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-bordered table-striped small">
+       <tr>
+         <td>Anexo: </td>
+         <td>{{ $auditaHallazgo->anexo }}</td>
+         <td>Comentarios: </td>
+         <td>{{ $auditaHallazgo->comentarios }}</td>
+       </tr>
+       
+       <tr>
+         <td>Num Apoyo: </td>
+         <td>{{ $auditaHallazgo->num_apoyo }}</td>
+         <td>Jefatura: </td>
+         <td>{{ $auditaHallazgo->jefatura }}</td>
+       </tr>
+       <tr>
+         <td>Gerencia: </td>
+         <td>{{ $auditaHallazgo->gerencia }}</td>
+         <td>Fec Usr: </td>
+         <td>{{ $auditaHallazgo->fec_usr }}</td>
+       </tr>
+       <tr>
+         <td>Aud Tip Val: </td>
+         <td>{{ $auditaHallazgo->aud_tip_val }}</td>
+         <td>Aud Monto: </td>
+         <td>{{ $auditaHallazgo->aud_monto }}</td>
+       </tr>
+       <tr>
+         <td>Año Folio: </td>
+         <td>{{ $auditaHallazgo->ano_folio }}</td>
+         <td>Aud Reincidente: </td>
+         <td>{{ $auditaHallazgo->aud_reincidente }}</td>
+       </tr>
+       <tr>
+         <td>Aud Com Anexo: </td>
+         <td>{{ $auditaHallazgo->aud_com_anexo }}</td>
+         <td>Aud Fir Val: </td>
+         <td>{{ $auditaHallazgo->aud_fir_val }}</td>
+       </tr>
+       <tr>
+         <td>Aud Fec Asignado: </td>
+         <td>{{ $auditaHallazgo->aud_fec_asignado }}</td>
+         <td>Aud Fec Revisado: </td>
+         <td>{{ $auditaHallazgo->aud_fec_revisado }}</td>
+       </tr>
+       <tr>
+         <td>Aud Fec Final: </td>
+         <td>{{ $auditaHallazgo->aud_fec_final }}</td>
+         <td>User Id: </td>
+         <td>{{ $auditaHallazgo->user_id }}</td>
+       </tr>
+       <tr>
+         <td>Enviar Mail: </td>
+         <td>{{ $auditaHallazgo->enviar_mail }}</td>
+         <td>User Id Resp: </td>
+         <td>{{ $auditaHallazgo->user_id_resp }}</td>
+       </tr>
+       <tr>
+         <td>Tipo: </td>
+         <td>{{ $auditaHallazgo->tipo }}</td>
+         
+         <td>Situación: </td>
+         <td>{{ $auditaHallazgo->situacion }}</td>
+        </tr>                     
+    </table>  
+  </div>
+  <div class="col-md-12">
+    <table class="table table-striped table-bordered small">
+      <tr>
+         <td colspan="2">Hallazgo: </td> 
+         <td colspan="2">{{ $auditaHallazgo->hallazgo }}</td>
+       
+       </tr>
+       <tr>
+         <td colspan="2">Recomendacion: </td>
+         <td colspan="2">{{ $auditaHallazgo->recomendacion }}</td>   
+       </tr>
+       <tr>
+         <td colspan="2">Riesgo: </td>
+         <td colspan="2">{{ $auditaHallazgo->riesgo }}</td>
+       </tr>
+       <tr>
+         <td colspan="2">Accion: </td>
+         <td colspan="2">{{ $auditaHallazgo->accion }}</td>
+       </tr>
+       <tr>
+         <td colspan="2">Accion2: </td>
+         <td colspan="2">{{ $auditaHallazgo->accion2 }}</td>
+       </tr> 
+    </table>
+  </div>
+</div>
+            

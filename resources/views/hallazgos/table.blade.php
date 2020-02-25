@@ -23,7 +23,7 @@
             <td style="text-align: center;">                 
                 <div class="btn-group" role="group" aria-label="Second Group">   
                     <div class="btn-group" role="group" aria-label="Basic example">
-                      <a title="Ver"  href="{{ route('auditaHallazgos2', ['id'=>$hallazgos->id]) }}" class="btn  btn_azul  btn-group-sm btn" href="#"><i class="fa fa-eye"></i></a>
+                      <span title="Ver" onclick="ver_hallazgo({{$hallazgos->id}})" data-toggle="modal" data-backdrop="false" data-target="#primary" class="btn  btn_azul  btn-group-sm btn" href="#"><i class="fa fa-eye"></i></span>
                       <a title="Editar" href="{{ route('auditaHallazgos.edit', [$hallazgos->id]) }}"  class="btn  btn_gris  btn-group-sm btn" href="#"><i class="fa fa-pencil"></i></a>
                       <a title="Eliminar" class="btn  btn_rojo btn-group-sm btn" href="#" onclick="crf_borrafase()"><i class="fa fa-trash"></i></a>
                   </div>                

@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
     Route::get('/borrar_comen','info_comentariosController@destroy');
     Route::get('/edita_comen','info_comentariosController@edita_comen');
     Route::get('/muestra_hallazgo','hallazgosController@muestra_hallazgo');
+    Route::get('/ver_hallazgo','hallazgosController@ver_hallazgo');
+
     
 
 

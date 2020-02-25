@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\hallazgos;
 use App\User;
-
+use App\Models\info_comentarios;
 use App\Models\documentos;
 use App\Models\empresas;
 use App\Models\localidad;
@@ -234,5 +234,20 @@ class hallazgosController extends AppBaseController
         $options = view('hallazgos.hallazgo_det',compact('hallazgo'))->render();
 
         return json_encode($options);
+    }
+
+    function ver_hallazgo(Request $request){
+        $infoComentarios_mod = new info_comentarios;
+
+        $hallazgo = hallazgos::where('id',$request->id_hallazgo)->get();
+        $auditaHallazgo = $hallazgo[0]; 
+        $id_hallazgo=$auditaHallazgo->id;
+        
+        $infoComentarios=$infoComentarios_mod->carga_comentarios($id_hallazgo);  
+
+        $id=$request->id_hallazgo;
+
+        $options = view('audita_hallazgos.show',compact('auditaHallazgo','infoComentarios','id'))->render();
+        return json_encode($options);     
     }
 }

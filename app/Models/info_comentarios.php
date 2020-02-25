@@ -21,11 +21,7 @@ class info_comentarios extends Model
     use SoftDeletes;
 
     public $table = 'info_comentarios';
-    
-
-    protected $dates = ['deleted_at'];
-
-
+    public $timestamps = false;
 
     public $fillable = [
         'id_usuario',

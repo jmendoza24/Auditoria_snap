@@ -1,4 +1,4 @@
-@include('audita_hallazgos.show_fields')
+<?php echo $__env->make('audita_hallazgos.show_fields', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <h4>Comentarios</h4>
 <hr>
     <div class="modal-footer" id="footer_clientes_cuentas">
@@ -6,7 +6,7 @@
           </div>
         <br><br>
         <div class="" style="overflow: auto;" id="tbl_com">
-               @include('info_comentarios.table')
+               <?php echo $__env->make('info_comentarios.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
        </div>
 		<div class="modal fade text-left" id="cometarios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
 		    <div class="modal-dialog" role="document">
@@ -18,9 +18,9 @@
 		          </button>
 		        </div>
 		        <form method="POST" action="/comentarios" enctype="multipart/form-data">
-              @csrf
+              <?php echo csrf_field(); ?>
       		          <div class="modal-body" id="">
-                       @include('info_comentarios.fields')
+                       <?php echo $__env->make('info_comentarios.fields', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       					    </div>
 		      </form>
 		      </div>
@@ -37,10 +37,11 @@
               </button>
             </div>
             <form method="POST" action="/comentarios2" enctype="multipart/form-data">
-              @csrf
+              <?php echo csrf_field(); ?>
                     <div class="modal-body" id="fields2">
                     </div>
           </form>
           </div>
         </div>
       </div>
+<?php /**PATH C:\wamp64\www\laravel\Auditoria_snap\resources\views/audita_hallazgos/show.blade.php ENDPATH**/ ?>

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class localidad extends Model
 {
-    use SoftDeletes;
+    # use SoftDeletes;
 
     public $table = 'localidads';
     

@@ -34,3 +34,15 @@ function muestra_hallazgo(hallazgo){
       }
   });
 }
+
+function ver_hallazgo(hallazgo){
+   $.ajax({
+      data: {'id_hallazgo':hallazgo},
+      url: '/api/v1/ver_hallazgo',
+      dataType: 'json',
+      type:  'get',
+      success:  function (response) { 
+        $("#contenido").html(response);
+      }
+  });
+}

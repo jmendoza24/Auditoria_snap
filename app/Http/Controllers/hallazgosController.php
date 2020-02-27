@@ -16,6 +16,7 @@ use App\Http\Requests\UpdatehallazgosRequest;
 use App\Repositories\hallazgosRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Flash;
 use Response;
 use DB;
@@ -237,10 +238,13 @@ class hallazgosController extends AppBaseController
     }
 
     function ver_hallazgo(Request $request){
+        $hallazgo = new hallazgos;
+        $hallazgo->id_hallazgo = $request->id_hallazgo;
+
         $infoComentarios_mod = new info_comentarios;
 
-        $hallazgo = hallazgos::where('id',$request->id_hallazgo)->get();
-        $auditaHallazgo = $hallazgo[0]; 
+        $auditaHallazgo = $hallazgo->obtiene_hallazgos($hallazgo);
+        $auditaHallazgo = $auditaHallazgo[0]; 
         $id_hallazgo=$auditaHallazgo->id;
         
         $infoComentarios=$infoComentarios_mod->carga_comentarios($id_hallazgo);  
@@ -249,5 +253,34 @@ class hallazgosController extends AppBaseController
 
         $options = view('audita_hallazgos.show',compact('auditaHallazgo','infoComentarios','id'))->render();
         return json_encode($options);     
+    }
+
+    function guarda_comentarios(Request $request){
+        $infoComentarios_mod = new info_comentarios;
+        if(!empty($request->file('archivo'))){
+            $path =  'storage/'.Storage::putFileAs('hallazgos', $request->file('archivo'), $request->file('archivo')->getClientOriginalName());
+        }else{
+            $path = '';
+        }
+        info_comentarios::insert(['id_usuario'=>auth()->id(),
+                                  'id_hallazgo'=>$request->id_hallazgo,
+                                  'comentarios'=>$request->comentarios,
+                                  'archivo'=>$path,
+                                  'created_at'=>date('Y-m-d'),
+                                  'estatus'=>$request->estatus]);
+        $infoComentarios=$infoComentarios_mod->carga_comentarios($request->id_hallazgo);  
+
+        $options = view('info_comentarios.table',compact('infoComentarios'))->render();
+        return ($options);
+    }
+
+    function elimina_com(Request $request){
+        $infoComentarios_mod = new info_comentarios;
+        info_comentarios::where('id',$request->id)->delete();
+        $infoComentarios=$infoComentarios_mod->carga_comentarios($request->id_hallazgo);  
+
+        $options = view('info_comentarios.table',compact('infoComentarios'))->render();
+        return ($options);
+           
     }
 }

@@ -46,3 +46,38 @@ function ver_hallazgo(hallazgo){
       }
   });
 }
+
+
+function guarda_comentario(){
+  var formData = new FormData($("#formUpload")[0]);
+
+    $.ajax({
+            url:"/api/v1/guarda_comentarios",
+            type: 'POST',
+            method: "POST",        
+            data:  formData,
+            //async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(respuesta){
+              console.log(respuesta);
+              $('#comentarios_table').html(respuesta);
+            }
+        }); 
+}
+
+function borra_comentario(id, hallazgo){
+  var parametros = {'id':id,
+                    'id_hallazgo':hallazgo};
+
+   $.ajax({
+            url:"/api/v1/borrar_comen",
+            type: "get",
+            data:parametros,
+            success: function(respuesta){ 
+              console.log(respuesta);
+             $('#comentarios_table').html(respuesta);
+            }
+        }); 
+  }

@@ -37,10 +37,11 @@ Route::group(['middleware' => 'auth','prefix'=>'api/v1/'], function () {
     Route::get('borra_doc','documentosController@destroy2');
     Route::get('borra_emp','empresasController@destroy');
     Route::get('borra_loc','localidadController@destroy');
-    Route::get('/borrar_comen','info_comentariosController@destroy');
+    Route::get('/borrar_comen','hallazgosController@elimina_com');
     Route::get('/edita_comen','info_comentariosController@edita_comen');
     Route::get('/muestra_hallazgo','hallazgosController@muestra_hallazgo');
     Route::get('/ver_hallazgo','hallazgosController@ver_hallazgo');
+    Route::post('/guarda_comentarios','hallazgosController@guarda_comentarios');
 
     
 

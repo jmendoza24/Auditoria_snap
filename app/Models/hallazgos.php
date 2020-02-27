@@ -179,5 +179,17 @@ class hallazgos extends Model
         return db::table('users')->where('tipo',$tipo)->get();
     }
 
+    function obtiene_hallazgos($filtro){
+        return db::table('audita_hallazgo as h')
+                ->leftjoin('users as u','u.id','h.responsable')
+                ->leftjoin('users as u2','u2.id','h.auditor')
+                ->leftjoin('users as u3','u3.id','h.auditor2')
+                ->leftjoin('users as u4','u4.id','h.gerencia')
+                ->leftjoin('users as u5','u5.id','h.jefatura')
+                ->where('h.id',$filtro->id_hallazgo)
+                ->selectraw('h.*, u.name as nresponsable, u2.name as nauditor, u3.name as nauditor2, u4.name as ngerencia ,u5.name as njefatura')
+                ->get();
+    }
+
     
 }
